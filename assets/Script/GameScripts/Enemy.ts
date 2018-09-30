@@ -17,7 +17,7 @@ export default class Enemy extends cc.Component {
         this.node.position = cc.v2((Math.random()*1080 -540),(Math.random()*1920 - 860));
     }
 
-    update (dt) {
+    update () {
         if(this.isStop)
         {
             return;

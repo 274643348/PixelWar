@@ -3,6 +3,11 @@
     "module": "commonjs",
     "lib": [ "dom", "es5", "es2015.promise" ],
     "target": "es5",
+    "noImplicitReturns": true,//不是函数的所有返回路径都有返回值时报错。
+    "noImplicitThis": true,//当this表达式的值为any类型的时候，生成一个错误
+    "noImplicitAny": true,//在表达式和声明上有隐含的any类型时报错
+    "noUnusedLocals": true,//若有未使用的局部变量则抛错
+    "strictNullChecks": true,//在严格的null检查模式下，null和undefined值不包含在任何类型里，只允许用它们自己和any来赋值
     "experimentalDecorators": true,
     "skipLibCheck": true
   },
