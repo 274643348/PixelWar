@@ -1,25 +1,21 @@
-import Enemy from "./Enemy";
-import GameCtrl from "./GameCtrl";
-
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class Player extends cc.Component {
-
-    @property(cc.Node)
-    gameCtrlNode: cc.Node;
+export default class Enemy extends cc.Component {
 
     @property
     speed: number = 10;
-
     @property
     isStop: boolean = false;
-    // LIFE-CYCLE CALLBACKS:
 
     private direction= cc.v2(1,0);
 
-    // onLoad () {}
 
+    onLoad () {
+        this.direction = Math.floor((Math.random() * 2)) === 0 ? cc.v2(1,0):cc.v2(1,0);
+        this.speed = Math.floor((Math.random()*10));
+        this.node.position = cc.v2((Math.random()*1080 -540),(Math.random()*1920 - 860));
+    }
 
     update (dt) {
         if(this.isStop)
@@ -44,26 +40,15 @@ export default class Player extends cc.Component {
         }
     }
 
-    onCollisionEnter(other:cc.Collider, self:cc.Collider)
-    {
-        console.log('on collision enter');
-        console.log(other);
-        other.node.getComponent(Enemy).die();
-
-        this.gameCtrlNode.getComponent(GameCtrl).addScore(1);
-
-        // other.
-        // this.isStop = true;
-    }
-
-    // onCollisionStay(other, self){
-    //     console.log('on collision stay');
-    // }
-
-    setDirection(dir:cc.Vec2)
+    public setDirection(dir:cc.Vec2)
     {
         dir.normalizeSelf();
         // console.log(dir.x +"****"+dir.y);
-        this.direction = dir;
+
+    }
+
+    public die(){
+        this.isStop = true;
+        this.node.removeFromParent();
     }
 }
