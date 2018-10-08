@@ -26,7 +26,6 @@ export default class Enemy extends cc.Component {
 
     let a = [2, 3, 4, 5];
     for (let index = 0; index < a.length; index++) {
-      console.log("a");
     }
     let move = cc.v2(
       this.direction.x * this.speed,
