@@ -6,7 +6,7 @@
 
 ### 2:实现热更新功能,配合“阿里云服务器”实现热更新
 
-####(有道云笔记:http://note.youdao.com/noteshare?id=e23d0d7850f38784ce294e92df2f4ab9);
+#### (有道云笔记:http://note.youdao.com/noteshare?id=e23d0d7850f38784ce294e92df2f4ab9);
 
 ### 3:增加“登陆功能”,配合“nodejs 的 express 框架”;
 
