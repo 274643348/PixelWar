@@ -46,8 +46,8 @@ export default class Player extends cc.Component {
 
     onCollisionEnter(other:cc.Collider, self:cc.Collider)
     {
-        console.log('on collision enter');
-        console.log(other);
+        // console.log('on collision enter');
+        // console.log(other);
         other.node.getComponent(Enemy).die();
 
         this.gameCtrlNode.getComponent(GameCtrl).addScore(1);
