@@ -61,10 +61,10 @@ export default class GameCtrl extends cc.Component {
     {
         let touchLoc = event.getLocation();
         if (cc.Intersection.pointInPolygon(this.player.convertToNodeSpaceAR(touchLoc), this.player.getComponent(cc.PolygonCollider).points)) {
-          console.log("hit");
+        //   console.log("hit");
         }
         else {
-            console.log("not hit");
+            // console.log("not hit");
         }
     }
 
