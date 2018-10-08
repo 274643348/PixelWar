@@ -673,7 +673,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -7,
-      "y": -705
+      "y": -24
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -909,7 +909,7 @@
     "_position": {
       "__type__": "cc.Vec2",
       "x": -359,
-      "y": -705
+      "y": -22
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -1104,7 +1104,7 @@
     },
     "_enabled": true,
     "manifestUrl": {
-      "__uuid__": "8b7d6a6b-82a2-4dab-93a2-d2c264735e7c"
+      "__uuid__": "4b6af470-ae4a-49be-a0e3-9599a4efc09a"
     }
   },
   {
