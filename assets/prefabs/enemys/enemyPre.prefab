@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "HelloWorld",
+    "_name": "enemyPre",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -28,7 +28,7 @@
       }
     ],
     "_prefab": {
-      "__id__": 5
+      "__id__": 7
     },
     "_id": "",
     "_opacity": 255,
@@ -56,8 +56,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 413,
-      "y": 741
+      "x": -285,
+      "y": 295
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -113,15 +113,34 @@
     }
   },
   {
-    "__type__": "e692f7i3+lE2ooC9/H4gW7z",
+    "__type__": "d4a43cJczNLKL9NmQg38Cxg",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
+    "startPosX": {
+      "__id__": 5
+    },
+    "startPosY": {
+      "__id__": 6
+    },
+    "moveType": 1,
+    "hitNum": 0,
+    "score": 1,
     "speed": 10,
     "isStop": false
+  },
+  {
+    "__type__": "RangeNums",
+    "min": -360,
+    "max": 360
+  },
+  {
+    "__type__": "RangeNums",
+    "min": -720,
+    "max": 720
   },
   {
     "__type__": "cc.PrefabInfo",
