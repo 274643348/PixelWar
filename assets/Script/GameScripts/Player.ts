@@ -1,6 +1,5 @@
-import EnemyLR from "./EnemyLRUD";
 import GameCtrl from "./GameCtrl";
-import EnemyMoveBase from "./Enemy/EnemyMoveBase";
+import { BulletMoveBase } from "./Bullet/BulletMoveBase";
 
 const { ccclass, property } = cc._decorator;
 
@@ -45,15 +44,18 @@ export default class Player extends cc.Component {
     }
 
     //测试开火
-    this.initFire();
+    // this.initFire();
   }
 
   onCollisionEnter(other: cc.Collider, self: cc.Collider) {
     // console.log('on collision enter');
     // console.log(other);
     if (other.node.group === "enemy") {
-      // other.node.getComponent(EnemyMoveBase).die();
+      this.addScore(-1);
+    }
 
+    if (other.node.group === "enemyBullet") {
+      other.node.getComponent(BulletMoveBase).die();
       this.addScore(-1);
     }
 

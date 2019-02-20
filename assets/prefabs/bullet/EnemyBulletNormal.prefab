@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemyPre",
+    "_name": "EnemyBulletNormal",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -28,15 +28,15 @@
       }
     ],
     "_prefab": {
-      "__id__": 7
+      "__id__": 5
     },
     "_id": "",
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 28,
-      "g": 44,
-      "b": 158,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -47,24 +47,24 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 195,
-      "height": 270
+      "width": 270,
+      "height": 195
     },
     "_rotationX": 0,
     "_rotationY": 0,
-    "_scaleX": 1,
-    "_scaleY": 1,
+    "_scaleX": 0.17,
+    "_scaleY": 0.11,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -285,
-      "y": 295
+      "x": 0,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
     "_localZOrder": 0,
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
-    "groupIndex": 2
+    "groupIndex": 5
   },
   {
     "__type__": "cc.Sprite",
@@ -75,7 +75,7 @@
     },
     "_enabled": true,
     "_spriteFrame": {
-      "__uuid__": "31bc895a-c003-4566-a9f3-2e54ae1c17dc"
+      "__uuid__": "314998a3-ea4a-45e6-9a88-f5bc62209428"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -100,7 +100,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "tag": 2,
+    "tag": 0,
     "_offset": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -108,39 +108,21 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 195,
-      "height": 270
+      "width": 270,
+      "height": 195
     }
   },
   {
-    "__type__": "d4a43cJczNLKL9NmQg38Cxg",
+    "__type__": "9953d9EYZBFuJgtissh+wp6",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "startPosX": {
-      "__id__": 5
-    },
-    "startPosY": {
-      "__id__": 6
-    },
-    "moveType": 1,
-    "hitNum": 0,
-    "score": 1,
-    "speed": 10,
-    "isStop": false
-  },
-  {
-    "__type__": "RangeNums",
-    "min": -360,
-    "max": 360
-  },
-  {
-    "__type__": "RangeNums",
-    "min": -720,
-    "max": 720
+    "hitNum": 1,
+    "autoRotation": true,
+    "speed": 20
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -148,9 +130,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "71b2bf6d-5504-40a8-92ac-9beeff1b9f71"
+      "__uuid__": "129f2e5f-0f7d-4187-a18d-c92b412a185f"
     },
-    "fileId": "651Pbw6hJCWpRdFRPtp5l+",
+    "fileId": "0cDHMk4WdNbauacIy3HTCE",
     "sync": false
   }
 ]

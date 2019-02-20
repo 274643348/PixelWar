@@ -1,10 +1,12 @@
 import EnemyMoveBase from "./EnemyMoveBase";
+import { BulletMoveBase } from "../Bullet/BulletMoveBase";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export class EnemyQianbian extends EnemyMoveBase {
-  // LIFE-CYCLE CALLBACKS:
+  @property(cc.Prefab)
+  bulletQiangbian: cc.Prefab;
 
   // onLoad () {}
 
@@ -19,6 +21,33 @@ export class EnemyQianbian extends EnemyMoveBase {
   /////////////////////////////重写父类
   Fire() {
     console.log("EnemyLRUP-- no ---- fire", this.hitNum);
+    this.node.runAction(
+      cc.sequence(
+        cc.delayTime(0),
+        cc.callFunc(() => {
+          const bullet = cc.instantiate(this.bulletQiangbian);
+          bullet.getComponent(BulletMoveBase).direction =
+            this.node.x < 0 ? cc.v2(1, 0) : cc.v2(-1, 0);
+          bullet.position = cc.v2(this.node.position);
+          this.node.parent.addChild(bullet);
+          this.node.active = true;
+        }, this)
+      )
+    );
+
+    this.node.runAction(
+      cc.sequence(
+        cc.delayTime(0.1),
+        cc.callFunc(() => {
+          const bullet = cc.instantiate(this.bulletQiangbian);
+          bullet.getComponent(BulletMoveBase).direction =
+            this.node.x < 0 ? cc.v2(1, 0) : cc.v2(-1, 0);
+          bullet.position = cc.v2(this.node.position);
+          this.node.parent.addChild(bullet);
+          this.node.active = true;
+        }, this)
+      )
+    );
   }
 
   /**

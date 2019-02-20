@@ -1,5 +1,5 @@
 import Player from "./Player";
-import BulletMoveBase from "./Bullet/BulletMoveBase";
+import { BulletMoveBase } from "./Bullet/BulletMoveBase";
 
 const { ccclass, property } = cc._decorator;
 
@@ -31,10 +31,10 @@ export default class GameCtrl extends cc.Component {
     // manager.enabledDebugDraw = true;
   }
   update() {
-    if (this.enemyPanel.children.length < 5) {
-      let enemyItem = cc.instantiate(this.enemyPre);
-      this.enemyPanel.addChild(enemyItem);
-    }
+    // if (this.enemyPanel.children.length < 5) {
+    //   let enemyItem = cc.instantiate(this.enemyPre);
+    //   this.enemyPanel.addChild(enemyItem);
+    // }
 
     let getRandomInt = function(min: number, max: number) {
       const minCeil = Math.ceil(min);
@@ -133,7 +133,7 @@ export default class GameCtrl extends cc.Component {
     let enemyItem = cc.instantiate(this.bulletPre);
     enemyItem.getComponent(BulletMoveBase).direction = cc.v2(dir);
     enemyItem.position = cc.v2(pos);
-    enemyItem.getComponent(BulletMoveBase).player = this.player;
+    // enemyItem.getComponent(BulletMoveBase).player = this.player;
     this.enemyPanel.addChild(enemyItem);
   }
 }

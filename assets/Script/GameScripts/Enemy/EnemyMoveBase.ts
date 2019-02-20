@@ -16,7 +16,8 @@ export enum MOVETYPE {
   LEFT,
   RIGHT,
   UP_DOWN,
-  LEFT_RIGHT
+  LEFT_RIGHT,
+  ENEMYSELF
 }
 
 /**
@@ -24,6 +25,10 @@ export enum MOVETYPE {
  */
 @ccclass
 export default class EnemyMoveBase extends cc.Component {
+  //初始化位置随机
+  @property
+  autoStartPos: boolean = true;
+
   @property(RangeNums)
   startPosX: RangeNums = new RangeNums();
 
@@ -49,6 +54,14 @@ export default class EnemyMoveBase extends cc.Component {
   @property
   speed: number = 10;
 
+  //血量
+  @property
+  bloodNum: number = 1;
+
+  //攻击速度
+  @property
+  fireSpeed: number = 3;
+
   //停止移动
   @property
   isStop: boolean = false;
@@ -59,6 +72,13 @@ export default class EnemyMoveBase extends cc.Component {
   onLoad() {
     //初始化相关信息
     this.initEnemy(this.moveType, this.speed);
+
+    if (this.autoStartPos) {
+      this.node.position = cc.v2(
+        this.getRandomInt(this.startPosX.min, this.startPosX.max),
+        this.getRandomInt(this.startPosY.min, this.startPosY.max)
+      );
+    }
 
     //初始化开火信息();
     this.initFire();
@@ -90,14 +110,16 @@ export default class EnemyMoveBase extends cc.Component {
       case MOVETYPE.LEFT_RIGHT:
         this.direction = cc.v2(this.getRandomInt(0, 2) > 0 ? -1 : 1, 0);
         break;
+      case MOVETYPE.ENEMYSELF:
+        this.direction = cc.v2(
+          this.getRandomInt(-1, 2),
+          this.getRandomInt(-1, 2)
+        );
+        this.direction.normalize();
+        break;
     }
 
     this.speed = speed;
-
-    this.node.position = cc.v2(
-      this.getRandomInt(this.startPosX.min, this.startPosX.max),
-      this.getRandomInt(this.startPosY.min, this.startPosY.max)
-    );
   }
 
   update() {
@@ -145,15 +167,18 @@ export default class EnemyMoveBase extends cc.Component {
 
   //死亡-----效果.......
   public die() {
-    this.isStop = true;
-    this.node.removeFromParent();
+    this.bloodNum -= 1;
+    if (this.bloodNum <= 0) {
+      this.isStop = true;
+      this.node.removeFromParent();
+    }
   }
 
   /**
    * 初始化开火--------开会频率
    */
   initFire() {
-    this.schedule(this.initFire, 1, cc.macro.REPEAT_FOREVER);
+    this.schedule(this.Fire, this.fireSpeed, cc.macro.REPEAT_FOREVER);
   }
 
   /**

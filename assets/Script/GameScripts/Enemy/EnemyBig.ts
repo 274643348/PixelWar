@@ -1,6 +1,6 @@
 import EnemyMoveBase, { MOVETYPE } from "./EnemyMoveBase";
 
-const { ccclass, property } = cc._decorator;
+const { ccclass } = cc._decorator;
 
 @ccclass
 export class EnemyLRUP extends EnemyMoveBase {
@@ -10,10 +10,8 @@ export class EnemyLRUP extends EnemyMoveBase {
 
   start() {
     //随机生成左右上下移动的怪物
-    this.initEnemy(
-      this.getRandomInt(MOVETYPE.UP, MOVETYPE.RIGHT),
-      this.getRandomInt(10, 30)
-    );
+    // this.initEnemy(MOVETYPE.ENEMYSELF, this.getRandomInt(10, 30));
+    //三条命
   }
 
   /////////////////////////////重写父类

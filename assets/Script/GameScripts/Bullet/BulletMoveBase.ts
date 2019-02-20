@@ -1,13 +1,14 @@
-import EnemyMoveBase from "../Enemy/EnemyMoveBase";
-import Player from "../Player";
-
 const { ccclass, property } = cc._decorator;
 
 /**
  * 左右上下移动的怪物
  */
 @ccclass
-export default class BulletMoveBase extends cc.Component {
+export class BulletMoveBase extends cc.Component {
+  //攻击力
+  @property
+  hitNum: number = 1;
+
   //子弹图片是否旋转
   @property
   autoRotation: boolean = true;
@@ -16,16 +17,16 @@ export default class BulletMoveBase extends cc.Component {
   @property
   speed: number = 10;
 
-  //攻击力
-  @property
-  hitNum: number = 1;
-
   //方向
-  public direction = cc.v2(0, 1);
+  public direction: cc.Vec2 = cc.v2(0, 1);
   public isStop: boolean = false;
   public player: cc.Node;
   onLoad() {
     this.initEnemy(this.direction, this.speed);
+    const scene = cc.director.getScene();
+    this.player = scene.children[0].children[0]
+      .getChildByName("uiLayer")
+      .getChildByName("player");
   }
 
   /**
@@ -86,20 +87,6 @@ export default class BulletMoveBase extends cc.Component {
     this.node.rotation = rotation;
 
     // this.oldPos = this.node.position;
-  }
-
-  onCollisionEnter(other: cc.Collider, self: cc.Collider) {
-    // console.log('on collision enter');
-    // console.log(other);
-    if (other.node.group === "enemy") {
-      // other.node.getComponent(EnemyMoveBase).die();
-      other.node.getComponent(EnemyMoveBase).die();
-      this.player.getComponent(Player).addScore(1);
-      this.die();
-    }
-
-    // other.
-    // this.isStop = true;
   }
 
   //死亡-----效果.......

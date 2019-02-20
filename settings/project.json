@@ -12,8 +12,10 @@
     ],
     [
       false,
+      false,
       true,
       true,
+      null,
       true
     ],
     [
@@ -34,6 +36,15 @@
       false,
       true,
       false,
+      false,
+      true
+    ],
+    [
+      false,
+      true,
+      false,
+      false,
+      true,
       false
     ]
   ],
@@ -47,7 +58,8 @@
     "player",
     "enemy",
     "goods",
-    "bullet"
+    "playerBullet",
+    "enemyBullet"
   ],
   "simulator-orientation": false,
   "simulator-resolution": {
@@ -55,6 +67,5 @@
     "width": 1920
   },
   "use-customize-simulator": false,
-  "use-project-simulator-setting": true,
-  "start-scene": "current"
+  "use-project-simulator-setting": true
 }

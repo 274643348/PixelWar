@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemyQianbian",
+    "_name": "enemyBig",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -31,12 +31,12 @@
       "__id__": 7
     },
     "_id": "",
-    "_opacity": 255,
+    "_opacity": 217.515,
     "_color": {
       "__type__": "cc.Color",
-      "r": 218,
-      "g": 68,
-      "b": 140,
+      "r": 46,
+      "g": 136,
+      "b": 34,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -47,8 +47,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 113,
-      "height": 270
+      "width": 250,
+      "height": 250
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -56,8 +56,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -534,
-      "y": -334
+      "x": -285,
+      "y": 295
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -108,12 +108,12 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 113,
-      "height": 270
+      "width": 100,
+      "height": 100
     }
   },
   {
-    "__type__": "83458O4NGRJw5M89dVOnunH",
+    "__type__": "5dafa/Rt7JO0qxS5yXfHT44",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -127,26 +127,23 @@
     "startPosY": {
       "__id__": 6
     },
-    "moveType": 5,
+    "moveType": 7,
     "hitNum": 0,
     "score": 1,
-    "speed": 10,
+    "speed": 1,
     "bloodNum": 1,
     "fireSpeed": 3,
-    "isStop": false,
-    "bulletQiangbian": {
-      "__uuid__": "129f2e5f-0f7d-4187-a18d-c92b412a185f"
-    }
+    "isStop": false
   },
   {
     "__type__": "RangeNums",
     "min": -540,
-    "max": 540
+    "max": -540
   },
   {
     "__type__": "RangeNums",
-    "min": -860,
-    "max": 860
+    "min": -540,
+    "max": -540
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -154,9 +151,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "08b7b6f0-05db-4c4e-a60f-ee4b18afc061"
+      "__uuid__": "d5c96e1f-53ae-4b8e-a7dd-30c566218914"
     },
-    "fileId": "f3/q9++7BC6qgs7/DC3lU5",
+    "fileId": "75ds5G1HhOeY3yZne/pM4L",
     "sync": false
   }
 ]
