@@ -15,7 +15,7 @@
     "_parent": null,
     "_children": [],
     "_tag": -1,
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 2
@@ -64,7 +64,7 @@
     "_localZOrder": 0,
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
-    "groupIndex": 5
+    "groupIndex": 4
   },
   {
     "__type__": "cc.Sprite",
@@ -130,9 +130,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "67d2c337-b37a-4b3c-86b2-95b4fed8b7e2"
+      "__id__": 0
     },
-    "fileId": "e0ffZUGvJCfqwo03Wh6TKM",
+    "fileId": "80MD+7b99B85fjuS7JodtA",
     "sync": false
   }
 ]

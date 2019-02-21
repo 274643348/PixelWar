@@ -56,8 +56,8 @@
     "_scaleY": 0.11,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": 929,
+      "y": 40
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -113,7 +113,7 @@
     }
   },
   {
-    "__type__": "9953d9EYZBFuJgtissh+wp6",
+    "__type__": "a46002fIpRID5UINvegvYfk",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -122,7 +122,7 @@
     "_enabled": true,
     "hitNum": 1,
     "autoRotation": true,
-    "speed": 20
+    "speed": 10
   },
   {
     "__type__": "cc.PrefabInfo",

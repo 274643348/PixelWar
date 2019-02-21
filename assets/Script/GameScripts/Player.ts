@@ -3,10 +3,26 @@ import { BulletMoveBase } from "./Bullet/BulletMoveBase";
 
 const { ccclass, property } = cc._decorator;
 
+enum BULLETTYPE {
+  FIRE,
+  NORMAL,
+  HOLE,
+  MOON
+}
+
 @ccclass
 export default class Player extends cc.Component {
   @property(cc.Node)
+  enemyPanel: cc.Node;
+
+  @property(cc.Node)
   gameCtrlNode: cc.Node;
+
+  @property([cc.Prefab])
+  bulletPres: cc.Prefab[] = [];
+
+  @property(cc.Node)
+  bulletFire: cc.Node;
 
   @property
   speed: number = 10;
@@ -15,7 +31,7 @@ export default class Player extends cc.Component {
   isStop: boolean = false;
   // LIFE-CYCLE CALLBACKS:
 
-  private direction = cc.v2(1, 0);
+  public direction = cc.v2(1, 0);
 
   // onLoad () {}
 
@@ -42,9 +58,11 @@ export default class Player extends cc.Component {
     if (this.node.getPositionY() < -1920 / 2) {
       this.node.y = 1920 / 2;
     }
+  }
 
+  start() {
     //测试开火
-    // this.initFire();
+    this.initFire(BULLETTYPE.HOLE);
   }
 
   onCollisionEnter(other: cc.Collider, self: cc.Collider) {
@@ -76,17 +94,53 @@ export default class Player extends cc.Component {
   /**
    * 初始化开火--------开会频率
    */
-  initFire() {
-    this.schedule(this.Fire, 0.1, cc.macro.REPEAT_FOREVER);
+  initFire(bullet: BULLETTYPE) {
+    this.bulletFire.active = false;
+    this.unschedule(this.FireNormal);
+    this.unschedule(this.FireHole);
+    this.unschedule(this.FireMoon);
+
+    switch (bullet) {
+      case BULLETTYPE.FIRE:
+        this.FireFire();
+        break;
+      case BULLETTYPE.NORMAL:
+        this.schedule(this.FireNormal, 0.1, cc.macro.REPEAT_FOREVER);
+        break;
+      case BULLETTYPE.HOLE:
+        this.schedule(this.FireHole, 1, cc.macro.REPEAT_FOREVER);
+        break;
+      case BULLETTYPE.MOON:
+        this.schedule(this.FireMoon, 1, cc.macro.REPEAT_FOREVER);
+        break;
+    }
   }
 
-  Fire() {
-    this.gameCtrlNode
-      .getComponent(GameCtrl)
-      .createBullet(this.node.position, this.direction);
+  FireFire() {
+    this.bulletFire.active = true;
+  }
+  FireNormal() {
+    this.createBullet(this.node.position, this.direction, BULLETTYPE.NORMAL);
+  }
+  FireHole() {
+    this.createBullet(this.node.position, this.direction, BULLETTYPE.HOLE);
+  }
+  FireMoon() {
+    this.createBullet(this.node.position, this.direction, BULLETTYPE.MOON);
   }
 
   addScore(score: number) {
     this.gameCtrlNode.getComponent(GameCtrl).addScore(score);
+  }
+
+  createBullet(pos: cc.Vec2, dir: cc.Vec2, index: BULLETTYPE) {
+    if (index === BULLETTYPE.FIRE) {
+      return;
+    }
+    let bulletItem = cc.instantiate(this.bulletPres[index]);
+    bulletItem.getComponent(BulletMoveBase).direction = cc.v2(dir);
+    bulletItem.position = cc.v2(pos);
+    // enemyItem.getComponent(BulletMoveBase).player = this.player;
+    this.enemyPanel.addChild(bulletItem);
   }
 }

@@ -69,6 +69,8 @@ export default class EnemyMoveBase extends cc.Component {
   //方向
   public direction = cc.v2(1, 0);
 
+  //移动目标
+  public moveTarget: cc.Node;
   onLoad() {
     //初始化相关信息
     this.initEnemy(this.moveType, this.speed);
@@ -115,7 +117,7 @@ export default class EnemyMoveBase extends cc.Component {
           this.getRandomInt(-1, 2),
           this.getRandomInt(-1, 2)
         );
-        this.direction.normalize();
+        this.direction.normalizeSelf();
         break;
     }
 
@@ -192,5 +194,22 @@ export default class EnemyMoveBase extends cc.Component {
     const minCeil = Math.ceil(min);
     const maxFloor = Math.floor(max);
     return Math.floor(Math.random() * (maxFloor - minCeil)) + minCeil;
+  }
+
+  moveToTarget(target: cc.Node) {
+    if (!this.moveTarget) {
+      this.isStop = true;
+      this.moveTarget = target;
+      this.schedule(this.moveToTargetSchedule, 0.01, cc.macro.REPEAT_FOREVER);
+    }
+  }
+
+  moveToTargetSchedule() {
+    if (this.moveTarget.isValid) {
+      let dir = this.moveTarget.position.sub(this.node.position);
+      dir = dir.normalize();
+      let move = cc.v2(dir.x * this.speed * 2, dir.y * this.speed * 2);
+      this.node.setPosition(cc.v2(this.node.getPosition()).add(move));
+    }
   }
 }

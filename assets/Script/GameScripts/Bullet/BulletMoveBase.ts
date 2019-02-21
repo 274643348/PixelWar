@@ -21,12 +21,19 @@ export class BulletMoveBase extends cc.Component {
   public direction: cc.Vec2 = cc.v2(0, 1);
   public isStop: boolean = false;
   public player: cc.Node;
+  public enemyPanel: cc.Node;
   onLoad() {
     this.initEnemy(this.direction, this.speed);
     const scene = cc.director.getScene();
     this.player = scene.children[0].children[0]
       .getChildByName("uiLayer")
       .getChildByName("player");
+
+    this.enemyPanel = scene.children[0].children[0]
+      .getChildByName("uiLayer")
+      .getChildByName("enemyPanel");
+
+    // this.enemyPanel = scene.children[0].children[0].getChildByName("enemyTest");
   }
 
   /**

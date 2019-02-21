@@ -10,9 +10,6 @@ export default class GameCtrl extends cc.Component {
   @property(cc.Prefab)
   enemyPre: cc.Prefab;
 
-  @property(cc.Prefab)
-  bulletPre: cc.Prefab;
-
   @property(cc.Node)
   touchCtrLayer: cc.Node;
 
@@ -128,12 +125,4 @@ export default class GameCtrl extends cc.Component {
   }
 
   // update (dt) {}
-
-  createBullet(pos: cc.Vec2, dir: cc.Vec2) {
-    let enemyItem = cc.instantiate(this.bulletPre);
-    enemyItem.getComponent(BulletMoveBase).direction = cc.v2(dir);
-    enemyItem.position = cc.v2(pos);
-    // enemyItem.getComponent(BulletMoveBase).player = this.player;
-    this.enemyPanel.addChild(enemyItem);
-  }
 }
