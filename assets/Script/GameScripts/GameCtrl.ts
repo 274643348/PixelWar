@@ -1,14 +1,23 @@
 import Player from "./Player";
-import { BulletMoveBase } from "./Bullet/BulletMoveBase";
 
 const { ccclass, property } = cc._decorator;
 
 @ccclass
 export default class GameCtrl extends cc.Component {
+  //敌人层
   @property(cc.Node)
   enemyPanel: cc.Node;
+
+  //敌人预制体
   @property(cc.Prefab)
   enemyPre: cc.Prefab;
+
+  //Goods层
+  @property(cc.Node)
+  goodsPanel: cc.Node;
+
+  @property(cc.Prefab)
+  goodsPre: cc.Prefab;
 
   @property(cc.Node)
   touchCtrLayer: cc.Node;
@@ -28,16 +37,21 @@ export default class GameCtrl extends cc.Component {
     // manager.enabledDebugDraw = true;
   }
   update() {
-    // if (this.enemyPanel.children.length < 5) {
-    //   let enemyItem = cc.instantiate(this.enemyPre);
-    //   this.enemyPanel.addChild(enemyItem);
-    // }
+    if (this.enemyPanel.children.length < 5) {
+      let enemyItem = cc.instantiate(this.enemyPre);
+      this.enemyPanel.addChild(enemyItem);
+    }
 
-    let getRandomInt = function(min: number, max: number) {
-      const minCeil = Math.ceil(min);
-      const maxFloor = Math.floor(max);
-      return Math.floor(Math.random() * (maxFloor - minCeil)) + minCeil;
-    };
+    if (this.goodsPanel.children.length < 1) {
+      let enemyItem = cc.instantiate(this.goodsPre);
+      this.goodsPanel.addChild(enemyItem);
+    }
+
+    // let getRandomInt = function(min: number, max: number) {
+    //   const minCeil = Math.ceil(min);
+    //   const maxFloor = Math.floor(max);
+    //   return Math.floor(Math.random() * (maxFloor - minCeil)) + minCeil;
+    // };
 
     //测试子弹方向是否与移动方向相同逻辑
     // if (this.enemyPanel.children.length < 20) {

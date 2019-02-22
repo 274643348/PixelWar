@@ -1,29 +1,36 @@
 import GameCtrl from "./GameCtrl";
 import { BulletMoveBase } from "./Bullet/BulletMoveBase";
+import { Goods } from "./Goods/Goods";
+import { delayCallFunc } from "./Utils/random";
 
 const { ccclass, property } = cc._decorator;
 
-enum BULLETTYPE {
+export enum BULLETTYPE {
   FIRE,
   NORMAL,
   HOLE,
-  MOON
+  MOON,
+  NONE
 }
 
 @ccclass
 export default class Player extends cc.Component {
+  //敌人容器
   @property(cc.Node)
   enemyPanel: cc.Node;
 
   @property(cc.Node)
   gameCtrlNode: cc.Node;
 
+  //子弹预制体
   @property([cc.Prefab])
   bulletPres: cc.Prefab[] = [];
 
+  //火焰子弹
   @property(cc.Node)
   bulletFire: cc.Node;
 
+  //移动速度
   @property
   speed: number = 10;
 
@@ -35,6 +42,7 @@ export default class Player extends cc.Component {
 
   // onLoad () {}
 
+  public BulletType: BULLETTYPE = BULLETTYPE.NONE;
   update(dt: any) {
     if (this.isStop) {
       return;
@@ -62,7 +70,7 @@ export default class Player extends cc.Component {
 
   start() {
     //测试开火
-    this.initFire(BULLETTYPE.HOLE);
+    // this.startFire(BULLETTYPE.HOLE);
   }
 
   onCollisionEnter(other: cc.Collider, self: cc.Collider) {
@@ -75,6 +83,11 @@ export default class Player extends cc.Component {
     if (other.node.group === "enemyBullet") {
       other.node.getComponent(BulletMoveBase).die();
       this.addScore(-1);
+    }
+
+    if (other.node.group === "goods") {
+      this.startFire(other.node.getComponent(Goods).bulletType);
+      other.node.getComponent(Goods).die();
     }
 
     // other.
@@ -91,42 +104,48 @@ export default class Player extends cc.Component {
     this.direction = dir;
   }
 
-  /**
-   * 初始化开火--------开会频率
-   */
-  initFire(bullet: BULLETTYPE) {
+  stopAllFire() {
     this.bulletFire.active = false;
-    this.unschedule(this.FireNormal);
-    this.unschedule(this.FireHole);
-    this.unschedule(this.FireMoon);
+    this.unschedule(this.FireBullet);
+  }
 
-    switch (bullet) {
+  /**
+   * 初始化开火--------开火频率
+   */
+  startFire(bullet: BULLETTYPE) {
+    this.unschedule(this.stopAllFire);
+    this.stopAllFire();
+    switch (this.BulletType) {
       case BULLETTYPE.FIRE:
-        this.FireFire();
+        this.schedule(this.FireBullet, 0.1, cc.macro.REPEAT_FOREVER);
+        this.scheduleOnce(this.stopAllFire, 5);
         break;
       case BULLETTYPE.NORMAL:
-        this.schedule(this.FireNormal, 0.1, cc.macro.REPEAT_FOREVER);
+        this.schedule(this.FireBullet, 0.1, cc.macro.REPEAT_FOREVER);
+        this.scheduleOnce(this.stopAllFire, 5);
         break;
       case BULLETTYPE.HOLE:
-        this.schedule(this.FireHole, 1, cc.macro.REPEAT_FOREVER);
+        this.schedule(this.FireBullet, 1, cc.macro.REPEAT_FOREVER);
+        this.scheduleOnce(this.stopAllFire, 5);
         break;
       case BULLETTYPE.MOON:
-        this.schedule(this.FireMoon, 1, cc.macro.REPEAT_FOREVER);
+        this.schedule(this.FireBullet, 1, cc.macro.REPEAT_FOREVER);
+        this.scheduleOnce(this.stopAllFire, 5);
         break;
     }
   }
 
-  FireFire() {
-    this.bulletFire.active = true;
-  }
-  FireNormal() {
-    this.createBullet(this.node.position, this.direction, BULLETTYPE.NORMAL);
-  }
-  FireHole() {
-    this.createBullet(this.node.position, this.direction, BULLETTYPE.HOLE);
-  }
-  FireMoon() {
-    this.createBullet(this.node.position, this.direction, BULLETTYPE.MOON);
+  FireBullet() {
+    switch (this.BulletType) {
+      case BULLETTYPE.FIRE:
+        this.bulletFire.active = true;
+        break;
+      case BULLETTYPE.NORMAL:
+      case BULLETTYPE.HOLE:
+      case BULLETTYPE.MOON:
+        this.createBullet(this.node.position, this.direction, this.BulletType);
+        break;
+    }
   }
 
   addScore(score: number) {
