@@ -1,6 +1,6 @@
 import EnemyMoveBase from "../Enemy/EnemyMoveBase";
-import Player from "../Player";
 import { BulletMoveBase } from "./BulletMoveBase";
+import { Player } from "../Player";
 
 const { ccclass, property } = cc._decorator;
 
@@ -13,7 +13,7 @@ export default class PlayerBulletFire extends BulletMoveBase {
   onCollisionEnter(other: cc.Collider, self: cc.Collider) {
     if (other.node.group === "enemy") {
       other.node.getComponent(EnemyMoveBase).die();
-      this.player.getComponent(Player).addScore(1);
+      this.player.getComponent(Player).KillEnemy();
     }
 
     if (other.node.group === "enemyBullet") {

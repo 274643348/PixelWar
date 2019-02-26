@@ -1,5 +1,6 @@
 import EnemyMoveBase from "../Enemy/EnemyMoveBase";
 import { BulletMoveBase } from "./BulletMoveBase";
+import { Player } from "../Player";
 
 const { ccclass, property } = cc._decorator;
 
@@ -57,6 +58,7 @@ export class PlayerBulletHole extends BulletMoveBase {
       // iterator.getComponent(EnemyMoveBase).isStop = true;
       if (iterator.isValid) {
         iterator.getComponent(EnemyMoveBase).die();
+        this.player.getComponent(Player).KillEnemy();
       }
     }
 

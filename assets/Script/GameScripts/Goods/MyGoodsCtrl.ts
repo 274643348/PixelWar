@@ -1,12 +1,20 @@
 import { getRandomInt } from "../Utils/random";
-import { BULLETTYPE } from "../Player";
 
 const { ccclass, property } = cc._decorator;
+
+export enum BULLETTYPE {
+  FIRE,
+  NORMAL,
+  HOLE,
+  MOON,
+  NONE
+}
+
 @ccclass
-export class Goods extends cc.Component {
+export class MyGoodsCtrl extends cc.Component {
   //子弹纹理
-  @property([cc.SpriteFrame])
-  goodsSF: cc.SpriteFrame[] = [];
+  @property([cc.Color])
+  goodsSF: cc.Color[] = [];
 
   //速度
   @property
@@ -24,7 +32,7 @@ export class Goods extends cc.Component {
       .normalize();
 
     //随机类型
-    this.randomType();
+    this.schedule(this.randomType, 3, cc.macro.REPEAT_FOREVER, 0.1);
   }
 
   randomType() {
@@ -33,9 +41,7 @@ export class Goods extends cc.Component {
       newType = getRandomInt(BULLETTYPE.FIRE, BULLETTYPE.MOON + 1);
     }
     this.bulletType = newType;
-    this.node.getComponent(cc.Sprite).spriteFrame = this.goodsSF[
-      this.bulletType
-    ];
+    this.node.color = this.goodsSF[this.bulletType];
   }
 
   update() {

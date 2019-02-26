@@ -10,7 +10,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemyLRUP",
+    "_name": "coin",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -28,15 +28,15 @@
       }
     ],
     "_prefab": {
-      "__id__": 7
+      "__id__": 5
     },
     "_id": "",
-    "_opacity": 217,
+    "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 233,
-      "g": 31,
-      "b": 79,
+      "r": 99,
+      "g": 214,
+      "b": 21,
       "a": 255
     },
     "_cascadeOpacityEnabled": true,
@@ -56,15 +56,15 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": -285,
-      "y": 295
+      "x": 0,
+      "y": 0
     },
     "_skewX": 0,
     "_skewY": 0,
     "_localZOrder": 0,
     "_globalZOrder": 0,
     "_opacityModifyRGB": false,
-    "groupIndex": 2
+    "groupIndex": 3
   },
   {
     "__type__": "cc.Sprite",
@@ -113,37 +113,15 @@
     }
   },
   {
-    "__type__": "48e48twL59A44oZWN3RZ95c",
+    "__type__": "b163865FuNGDb+tg6ufnUVv",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "autoStartPos": true,
-    "startPosX": {
-      "__id__": 5
-    },
-    "startPosY": {
-      "__id__": 6
-    },
-    "moveType": 0,
-    "hitNum": 0,
-    "score": 1,
-    "speed": 10,
-    "bloodNum": 1,
-    "fireSpeed": 3,
-    "isStop": false
-  },
-  {
-    "__type__": "RangeNums",
-    "min": -540,
-    "max": 540
-  },
-  {
-    "__type__": "RangeNums",
-    "min": -960,
-    "max": 960
+    "autoDie": false,
+    "score": 1
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -151,9 +129,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "39e35167-d4ad-4261-98cb-65431dd55191"
+      "__uuid__": "230319d1-d66a-4dff-a5d6-600ce3bb1f42"
     },
-    "fileId": "ceOa7bi4ZLb5ryLCsDSJKj",
+    "fileId": "8dft1L75lIe72VnTqzRjS2",
     "sync": false
   }
 ]

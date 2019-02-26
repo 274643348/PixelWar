@@ -1,20 +1,12 @@
 import GameCtrl from "./GameCtrl";
 import { BulletMoveBase } from "./Bullet/BulletMoveBase";
-import { Goods } from "./Goods/Goods";
-import { delayCallFunc } from "./Utils/random";
+import { MyGoodsCtrl, BULLETTYPE } from "./Goods/MyGoodsCtrl";
+import { MyCoinCtrl } from "./Goods/MyCoinCtrl";
 
 const { ccclass, property } = cc._decorator;
 
-export enum BULLETTYPE {
-  FIRE,
-  NORMAL,
-  HOLE,
-  MOON,
-  NONE
-}
-
 @ccclass
-export default class Player extends cc.Component {
+export class Player extends cc.Component {
   //敌人容器
   @property(cc.Node)
   enemyPanel: cc.Node;
@@ -70,24 +62,38 @@ export default class Player extends cc.Component {
 
   start() {
     //测试开火
-    // this.startFire(BULLETTYPE.HOLE);
+    // this.startFire(BULLETTYPE.FIRE);
   }
 
   onCollisionEnter(other: cc.Collider, self: cc.Collider) {
     // console.log('on collision enter');
     // console.log(other);
+
+    //碰撞敌人
     if (other.node.group === "enemy") {
-      this.addScore(-1);
+      // this.KillEnemy();
+      // this.addScore(-1);
+      //TODO 玩家减去一条生命;
     }
 
+    //碰撞敌人子弹
     if (other.node.group === "enemyBullet") {
       other.node.getComponent(BulletMoveBase).die();
-      this.addScore(-1);
+      // this.addScore(-1);
+      //TODO 玩家减去一条生命;
     }
 
+    //碰撞物品
     if (other.node.group === "goods") {
-      this.startFire(other.node.getComponent(Goods).bulletType);
-      other.node.getComponent(Goods).die();
+      //碰撞子弹
+      if (other.node.getComponent(MyGoodsCtrl)) {
+        this.startFire(other.node.getComponent(MyGoodsCtrl).bulletType);
+        other.node.getComponent(MyGoodsCtrl).die();
+      } else if (other.node.getComponent(MyCoinCtrl)) {
+        //碰撞金币
+        this.addScore(other.node.getComponent(MyCoinCtrl).score);
+        other.node.getComponent(MyCoinCtrl).die();
+      }
     }
 
     // other.
@@ -107,12 +113,14 @@ export default class Player extends cc.Component {
   stopAllFire() {
     this.bulletFire.active = false;
     this.unschedule(this.FireBullet);
+    this.bulletFire.active = false;
   }
 
   /**
    * 初始化开火--------开火频率
    */
   startFire(bullet: BULLETTYPE) {
+    this.BulletType = bullet;
     this.unschedule(this.stopAllFire);
     this.stopAllFire();
     switch (this.BulletType) {
@@ -150,6 +158,10 @@ export default class Player extends cc.Component {
 
   addScore(score: number) {
     this.gameCtrlNode.getComponent(GameCtrl).addScore(score);
+  }
+
+  KillEnemy() {
+    this.gameCtrlNode.getComponent(GameCtrl).KillEnemy(1);
   }
 
   createBullet(pos: cc.Vec2, dir: cc.Vec2, index: BULLETTYPE) {
