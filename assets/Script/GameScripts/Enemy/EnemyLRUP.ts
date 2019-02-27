@@ -12,7 +12,7 @@ export class EnemyLRUP extends EnemyMoveBase {
     //随机生成左右上下移动的怪物
     this.initEnemy(
       this.getRandomInt(MOVETYPE.UP, MOVETYPE.RIGHT),
-      this.getRandomInt(10, 30)
+      this.speed
     );
   }
 

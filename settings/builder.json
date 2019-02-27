@@ -24,7 +24,7 @@
   "qqplay": {
     "orientation": "portrait"
   },
-  "renderMode": "0",
+  "renderMode": "2",
   "startScene": "2d2f792f-a40c-49bb-a189-ed176a246e49",
   "title": "hello_world",
   "webOrientation": "portrait",

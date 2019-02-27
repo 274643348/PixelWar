@@ -31,10 +31,10 @@
       "__id__": 5
     },
     "_id": "",
-    "_opacity": 255,
+    "_opacity": 243.015,
     "_color": {
       "__type__": "cc.Color",
-      "r": 99,
+      "r": 214,
       "g": 214,
       "b": 21,
       "a": 255
@@ -47,8 +47,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 100,
-      "height": 100
+      "width": 40,
+      "height": 40
     },
     "_rotationX": 0,
     "_rotationY": 0,
@@ -56,8 +56,8 @@
     "_scaleY": 1,
     "_position": {
       "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
+      "x": -99,
+      "y": -753
     },
     "_skewX": 0,
     "_skewY": 0,
@@ -108,8 +108,8 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 100,
-      "height": 100
+      "width": 50,
+      "height": 50
     }
   },
   {
