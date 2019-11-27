@@ -72,6 +72,104 @@ class WXSDK {
     });
   }
 
+  //获取授权RunData信息
+  getgetWeRunDataSetting() {
+    console.log("获取授权RunData信息权限");
+    try {
+      //获取微信界面大小
+      let sysInfo = wx.getSystemInfoSync();
+      width = sysInfo.screenWidth;
+      height = sysInfo.screenHeight;
+    } catch (e) {
+      console.log("获取系统参数失败");
+    }
+
+    wx.getSetting({
+      success(res) {
+        console.log(res.authSetting);
+        if (res.authSetting["scope.werun"]) {
+          console.log("getWeRunData 已经授权");
+          //获取信息
+          wx.getWeRunData({
+            success(res) {
+              console.log("加密信息", res.encryptedData);
+            }
+          });
+        } else {
+          console.log("getWeRunData 未授权");
+          //请求用户信息
+          wx.authorize({
+            scope: "scope.werun",
+            success() {
+              console.log("用户 成功 getWeRunData授权");
+              wx.getWeRunData({
+                success(res) {
+                  console.log("加密信息", res.encryptedData);
+                }
+              });
+            },
+            fail() {
+              console.log("用户 拒绝 getWeRunData授权");
+            }
+          });
+        }
+      }
+    });
+  }
+
+  //获取授权个人信息
+  getgetWegetLocationSetting() {
+    console.log("获取授权getLocation信息权限");
+    try {
+      //获取微信界面大小
+      let sysInfo = wx.getSystemInfoSync();
+      width = sysInfo.screenWidth;
+      height = sysInfo.screenHeight;
+    } catch (e) {
+      console.log("获取系统参数失败");
+    }
+
+    wx.getSetting({
+      success(res) {
+        console.log(res.authSetting);
+        if (res.authSetting["scope.userLocation"]) {
+          console.log("userLocation 已经授权");
+          //获取信息
+          wx.getLocation({
+            success(res) {
+              const latitude = res.latitude;
+              const longitude = res.longitude;
+              const speed = res.speed;
+              const accuracy = res.accuracy;
+              console.log("位置信息", latitude, longitude, speed, accuracy);
+            }
+          });
+        } else {
+          console.log("userLocation 未授权");
+          //请求用户信息
+          wx.authorize({
+            scope: "scope.userLocation",
+            success() {
+              console.log("用户 成功 userLocation授权");
+              wx.getLocation({
+                success(res) {
+                  const latitude = res.latitude;
+                  const longitude = res.longitude;
+                  const speed = res.speed;
+                  const accuracy = res.accuracy;
+                  console.log("位置信息", latitude, longitude, speed, accuracy);
+                }
+              });
+            },
+            fail() {
+              console.log("用户 拒绝 userLocation授权");
+            }
+          });
+        }
+      }
+    });
+  }
+
   getUserInfo(lable: cc.Node) {
     wx.getUserInfo({
       success(res) {

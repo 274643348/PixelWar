@@ -1,7 +1,7 @@
-import { gameTools } from "./GameTools";
-import { GameConfig } from "../GameScripts/GameConfig";
-import { wxSDK } from "./WXSDK";
-import { getRandomInt } from "../GameScripts/Utils/random";
+import { GameConfig } from '../GameScripts/GameConfig';
+import { getRandomInt } from '../GameScripts/Utils/random';
+import { gameTools } from './GameTools';
+import { wxSDK } from './WXSDK';
 
 const { ccclass, property } = cc._decorator;
 
@@ -175,5 +175,14 @@ export class TestWeChart extends cc.Component {
   showRewardedVideoAd(event: cc.Event.EventTouch, customEventData: any) {
     console.log("ljy------showRewardedVideoAd");
     wxSDK.my_showRewardedVideoAd();
+  }
+
+  runData(event: cc.Event.EventTouch, customEventData: any) {
+    console.log("ljy------getgetWeRunDataSetting");
+    wxSDK.getgetWeRunDataSetting();
+  }
+  location(event: cc.Event.EventTouch, customEventData: any) {
+    console.log("ljy------getgetWegetLocationSetting");
+    wxSDK.getgetWegetLocationSetting();
   }
 }
